@@ -130,7 +130,7 @@ defmodule MyXQL.Protocol.Values do
   end
 
   def decode_text_value("0000-00-00", :date) do
-    :zero_date
+    nil
   end
 
   def decode_text_value(value, :date) do
@@ -142,7 +142,7 @@ defmodule MyXQL.Protocol.Values do
   end
 
   def decode_text_value("0000-00-00 00:00:00", :naive_datetime) do
-    :zero_datetime
+    nil
   end
 
   def decode_text_value(value, :naive_datetime) do
@@ -150,7 +150,7 @@ defmodule MyXQL.Protocol.Values do
   end
 
   def decode_text_value("0000-00-00 00:00:00", :datetime) do
-    :zero_datetime
+    nil
   end
 
   def decode_text_value(value, :datetime) do
@@ -406,7 +406,7 @@ defmodule MyXQL.Protocol.Values do
   end
 
   defp decode_date(<<0, r::bits>>, null_bitmap, t, acc) do
-    v = :zero_date
+    v = nil
     decode_binary_row(r, null_bitmap >>> 1, t, [v | acc])
   end
 
@@ -478,7 +478,7 @@ defmodule MyXQL.Protocol.Values do
          acc,
          _type
        ) do
-    v = :zero_datetime
+    v = nil
     decode_binary_row(r, null_bitmap >>> 1, t, [v | acc])
   end
 

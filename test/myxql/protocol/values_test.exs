@@ -124,13 +124,13 @@ defmodule MyXQL.Protocol.ValueTest do
       @tag sql_mode: "ALLOW_INVALID_DATES"
       test "MYSQL_TYPE_TIMESTAMP - Zero timestamp", c do
         [[value]] = query!(c, "SELECT TIMESTAMP '0000-00-00 00:00:00'").rows
-        assert value in [:zero_datetime, "0000-00-00 00:00:00"]
+        assert value == nil
       end
 
       @tag sql_mode: "ALLOW_INVALID_DATES"
       test "MYSQL_TYPE_DATE - Zero date", c do
         [[value]] = query!(c, "SELECT DATE '0000-00-00'").rows
-        assert value in [:zero_date, "0000-00-00"]
+        assert value == nil
       end
 
       @tag timestamp_precision: true
